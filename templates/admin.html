@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Admin page</h1>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center;">Items</h1>
+
+    <table>
+        <tr>    
+            <th>Item</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.image_url }}</td>
+                <td><a href="/admin/delete/{{item.id}}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <form action="/admin" method="POST">
+        <input type="text", name="item", id="item">
+        <input type="text", name="description", id="description">
+        <input type="text", name="price", id="price">
+        <input type="text", name="image_url", id="image_url">
+        <input type="submit", value="Add Item">
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <h1>Orders</h1>
+    <table>
+        <tr>    
+            <th>Id</th>
+            <th>Username</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Address</th>
+            <th>Order date</th>
+            <th>Status</th>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.username }}</td>
+                <td>{{ order.item }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.address }}</td>
+                <td>{{ order.order_date }}</td>
+                {% if not order.done %}
+                <td><a href="/admin/done/{{order.id}}">completed</a></td>
+                {% else %}
+                <td>Done</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

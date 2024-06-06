@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>CodeVerse</title>
+{% endblock %}
+
+{% block body%}
+    <h1>CodeVerse</h1>
+    <h1 class="heading">Check<span>out</span></h1>
+<main>
+    <form action="/" method="POST">
+        <h2>Masukkan Username</h2>
+        <input type="text", name="username", id="username">
+        <input type="hidden" name="item" value="{{ item.name }}">
+        <h2>Masukkan Quantity</h2>
+        <input type="number", name="quantity", id="quantity">
+        <h2>Masukkan Address</h2>
+        <input type="text", name="address", id="address"><br>
+        <input type="submit", value="Add Order">
+    </form>
+</main>
+{% endblock %}
+
+
+

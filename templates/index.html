@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>CodeVerse</title>
+{% endblock %}
+
+{% block body%}
+    <h1>CodeVerse</h1>
+    <h1 class="heading">our<span>products</span></h1>
+<br>
+<br>
+<br>
+    <main>
+    {% for item in items %}
+    <section class="product" id="product">
+        <div class="product-slider">
+            <div class="wrapper">
+                <div class="box">
+                    {% if item.image_url %}
+                    <img src="{{ url_for('static', filename=item.image_url) }}">
+                    {% else %}
+                    <p>No image available</p>  
+                    {% endif %}
+                    <h3>{{ item.name }}</h3>
+                    <h4>{{ item.description }}</h4>
+                    <div class="price">{{ item.price }}</div>
+                    <div class="stars"></div>
+                    <form action="/checkout/{{ item.name }}" method="GET">
+                        <input type="hidden" name="item" value="{{ item.name }}">
+                        <input type="submit" value="Add Order">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endfor %}
+</main>
+{% endblock %}
